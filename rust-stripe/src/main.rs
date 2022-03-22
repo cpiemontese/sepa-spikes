@@ -1,44 +1,30 @@
 extern crate dotenv;
 
-use std::{collections::HashMap, sync::Arc};
+mod routes;
 
+use std::collections::HashMap;
+
+use actix_files::Files;
 use dotenv::dotenv;
 use reqwest::Url;
 
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+use actix_web::{App, HttpServer};
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
     dotenv().ok();
 
-    let secret_key = std::env::var("STRIPE_SECRET_KEY").expect("Missing STRIPE_SECRET_KEY in env");
-    let stripe_url = Url::parse("https://api.stripe.com/v1/")?;
-
-    let client = reqwest::Client::new();
-    create_a_customer(&client, &stripe_url, &secret_key).await;
-    let response =
-        create_a_payment_intent(client, stripe_url, secret_key, "cus_LMUT6c5j1u8ubB").await;
-    dbg!(response.text().await);
-    Ok(())
+    HttpServer::new(|| {
+        App::new()
+            .service(routes::hello)
+            .service(routes::customer)
+            .service(Files::new("/public", "./public").show_files_listing())
+    })
+    .bind(("127.0.0.1", 8080))?
+    .run()
+    .await
 }
 
-async fn create_a_customer(
-    client: &reqwest::Client,
-    stripe_url: &Url,
-    secret_key: &str,
-) -> reqwest::Response {
-    let form_data = HashMap::from([
-        ("description".to_string(), "A customer".to_string()),
-        ("name".to_string(), "Arturo".to_string()),
-    ]);
-    let resp = client
-        .post(stripe_url.join("customers").unwrap())
-        .form(&form_data)
-        .basic_auth::<&str, String>(secret_key, None)
-        .send()
-        .await
-        .unwrap();
-
-    resp
-}
 async fn create_a_payment_intent(
     client: reqwest::Client,
     stripe_url: Url,
