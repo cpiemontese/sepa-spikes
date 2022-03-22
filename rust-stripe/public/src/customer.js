@@ -24,13 +24,18 @@
   form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    postData(`${serverUrl}/customers`, { name: customerName.value, email: customerEmail.value })
+    postData(`${SERVER_URL}/customers`, { name: customerName.value, email: customerEmail.value })
       .then(data => {
-        console.log(data); // JSON data parsed by `data.json()` call
+        console.log({ customer: data });
         form.classList.add('hidden');
         paymentForm.classList.remove('hidden');
         document.getElementById('customer-id').value = data.id
+      })
+      .catch((error) => {
+        console.error({ customer: error });
+        Flash.failure('Something went wrong while saving your data');
       });
+    ;
   });
 })();
 

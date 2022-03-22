@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    <div id="flash-message" class=""></div>
+
     <form id="customer-form" class="flex flex-col" action="/customer" method="post">
         <div class="">
             <label for="customer-name">
@@ -56,20 +58,22 @@
         <button id="payment-submit-button">Go to Payment</button>
     </form>
 
-    <form class="hidden" action="/charge" method="post" id="payment-form">
+    <!-- Add the client_secret from the PaymentIntent as a data attribute   -->
+    <form class="hidden" action="/charge" method="post" id="stripe-form">
         <div class="form-row inline">
             <div class="col">
-                <label for="accountholder-name">
+                <label for="stripe-customer-name">
                     Name
                 </label>
-                <input id="accountholder-name" name="accountholder-name" placeholder="Jenny Rosen" required />
+                <input id="stripe-customer-name" name="stripe-customer-name" placeholder="Jenny Rosen" required />
             </div>
 
             <div class="col">
-                <label for="email">
+                <label for="stripe-customer-email">
                     Email Address
                 </label>
-                <input id="email" name="email" type="email" placeholder="jenny.rosen@example.com" required />
+                <input id="stripe-customer-email" name="stripe-customer.email" type="email"
+                    placeholder="jenny.rosen@example.com" required />
             </div>
         </div>
 
@@ -87,9 +91,7 @@
             </div>
         </div>
 
-        <!-- Add the client_secret from the PaymentIntent as a data attribute   -->
-        <button id="submit-button" data-secret="pi_3KflwWGPUghqTKYz12E8XrTo_secret_iA9e2zEZjX1CeoFlEGNOSku4u">Submit
-            Payment</button>
+        <button id="submit-button">Submit Payment</button>
 
         <!-- Display mandate acceptance text. -->
         <div id="mandate-acceptance">
@@ -112,7 +114,7 @@
     <script src="src/globals.js"></script>
     <script src="src/customer.js"></script>
     <script src="src/payment-intent.js"></script>
-    <script src="src/index.js"></script>
+    <script src="src/stripe.js"></script>
 </body>
 
 </html>

@@ -58,7 +58,10 @@ pub async fn create_payment_intent(
         .unwrap();
     HttpResponse::Ok().json(stripe_customer)
 }
+
 #[derive(Serialize, Deserialize)]
 struct PaymentIntentCreated {
     id: String,
+    customer: String,
+    client_secret: String,
 }
