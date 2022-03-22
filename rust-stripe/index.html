@@ -2,13 +2,35 @@
 <html>
 
 <head>
-    <title>Submit Payment</title>
+    <title>Stripe SEPA Spike</title>
+
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-    <form action="/charge" method="post" id="payment-form">
+    <form id="customer-form" class="flex flex-col" action="/customer" method="post">
+        <div class="">
+            <label for="customer-name">
+                Name
+            </label>
+            <input id="customer-name" name="customer-name" placeholder="Mario Rossi" required />
+        </div>
+
+        <div class="">
+            <label for="email">
+                Email Address
+            </label>
+            <input id="customer-email" name="customer-email" type="email" placeholder="mario.rossi@example.com"
+                required />
+        </div>
+
+        <button id="customer-submit-button">Create Customer</button>
+    </form>
+
+    <form class="hidden" action="/charge" method="post" id="payment-form">
         <div class="form-row inline">
             <div class="col">
                 <label for="accountholder-name">
@@ -61,6 +83,8 @@
         <div id="error-message" role="alert"></div>
     </form>
 
+    <script src="public/src/globals.js"></script>
+    <script src="public/src/customer.js"></script>
     <script src="index.js"></script>
 </body>
 
