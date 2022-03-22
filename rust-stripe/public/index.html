@@ -30,6 +30,32 @@
         <button id="customer-submit-button">Create Customer</button>
     </form>
 
+    <form id="payment-form" class="hidden flex flex-col" action="/payment-intent" method="post">
+        <div class="">
+            <input id="customer-id" name="customer-id" class="hidden" required />
+        </div>
+        <div class="">
+            <label for="payment-amount">
+                Amount
+            </label>
+            <input id="payment-amount" name="payment-amount" placeholder="1000" required />
+        </div>
+        <div class="">
+            <label for="payment-currency">
+                Currency
+            </label>
+            <input id="payment-currency" name="payment-currency" placeholder="eur" required />
+        </div>
+        <div class="">
+            <label for="payment-method">
+                Payment Method
+            </label>
+            <input id="payment-method" name="payment-method" placeholder="sepa" required />
+        </div>
+
+        <button id="payment-submit-button">Go to Payment</button>
+    </form>
+
     <form class="hidden" action="/charge" method="post" id="payment-form">
         <div class="form-row inline">
             <div class="col">
@@ -85,6 +111,7 @@
 
     <script src="src/globals.js"></script>
     <script src="src/customer.js"></script>
+    <script src="src/payment-intent.js"></script>
     <script src="src/index.js"></script>
 </body>
 

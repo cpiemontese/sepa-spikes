@@ -1,8 +1,9 @@
 (() => {
-  const form = document.getElementById('customer-form');
-  const paymentForm = document.getElementById('payment-form');
-  const customerName = document.getElementById('customer-name');
-  const customerEmail = document.getElementById('customer-email');
+  const form = document.getElementById('payment-form');
+  const customerId = document.getElementById('customer-id');
+  const paymentMethod = document.getElementById('payment-method');
+  const amount = document.getElementById('payment-amount');
+  const currency = document.getElementById('payment-currency');
 
   async function postData (url = '', data = {}) {
     const response = await fetch(url, {
@@ -24,12 +25,10 @@
   form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    postData(`${serverUrl}/customers`, { name: customerName.value, email: customerEmail.value })
-      .then(data => {
-        console.log(data); // JSON data parsed by `data.json()` call
+    postData(`${serverUrl}/payment-intents`, { customer_id: customerId.value, amount: amount.value, payment_method: paymentMethod.value, currency: currency.value })
+      .then(_ => {
         form.classList.add('hidden');
-        paymentForm.classList.remove('hidden');
-        document.getElementById('customer-id').value = data.id
+        form.classList.remove('hidden');
       });
   });
 })();
