@@ -1,12 +1,21 @@
 extern crate dotenv;
 
-use std::{collections::HashMap, sync::Arc};
+mod app;
+use app::App;
+
+use std::collections::HashMap;
 
 use dotenv::dotenv;
 use reqwest::Url;
+use sauron::{prelude::wasm_bindgen, Program};
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+#[wasm_bindgen(start)]
+pub async fn main() {
+    Program::mount_to_body(App::new());
+}
+
+async fn do_stuff() -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
 
     let secret_key = std::env::var("STRIPE_SECRET_KEY").expect("Missing STRIPE_SECRET_KEY in env");
@@ -15,7 +24,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = reqwest::Client::new();
     create_a_customer(&client, &stripe_url, &secret_key).await;
     let response =
-        create_a_payment_intent(client, stripe_url, secret_key, "cus_LMUT6c5j1u8ubB").await;
+        create_a_payment_intent(client, stripe_url, secret_key, "cus_LMWNfdVA38M25w").await;
     dbg!(response.text().await);
     Ok(())
 }
