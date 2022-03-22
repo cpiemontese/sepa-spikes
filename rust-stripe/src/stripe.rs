@@ -49,17 +49,15 @@ impl Stripe {
             ("customer".to_string(), customer_id.to_string()),
             ("currency".to_string(), currency),
             ("amount".to_string(), amount),
-            (
-                "payment_method_types[]".to_string(),
-                payment_method,
-            ),
+            ("payment_method_types[]".to_string(), payment_method),
             (
                 "metadata[integration_checker]".to_string(),
                 "sepa_debit_accept_a_payment".to_string(),
             ),
             ("setup_future_usage".to_string(), "off_session".to_string()),
         ]);
-        let resp = self.client
+        let resp = self
+            .client
             .post(self.stripe_url.join("payment_intents").unwrap())
             .form(&form_data)
             .basic_auth::<String, String>(self.secret_key.clone(), None)

@@ -18,7 +18,7 @@ async fn main() -> std::io::Result<()> {
             std::env::var("STRIPE_SECRET_KEY").expect("Missing STRIPE_SECRET_KEY in env");
         let stripe_url = Url::parse("https://api.stripe.com/v1/").unwrap();
         let stripe = Stripe::new(stripe_url, secret_key);
-        
+
         App::new()
             .app_data(stripe)
             .service(routes::customer)
