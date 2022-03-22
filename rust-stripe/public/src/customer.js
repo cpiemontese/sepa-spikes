@@ -26,6 +26,7 @@
     postData(`${serverUrl}/customer`, { name: customerName.value, email: customerEmail.value })
       .then(data => {
         console.log(data); // JSON data parsed by `data.json()` call
+        form.classList.add('hidden');
       });
   });
 })();
