@@ -12,10 +12,36 @@
 
 <body class="sm:w-1/2 lg:w-1/3 sm:mx-auto m-4">
     <div id="flash-message" class="hidden text-lg p-4 mb-4"></div>
+    <div id="customer">
+        <div class="" id="customer-selection">
+            <label for="customer-id">
+                Customer
+            </label>
+            <select id="customer-id">
+            </select>
+        </div>
+        <form id="customer-form" class="hidden flex flex-col" action="/customer" method="post">
+            <div class="">
+                <label for="customer-name">
+                    Name
+                </label>
+                <input id="customer-name" name="customer-name" placeholder="Mario Rossi" required />
+            </div>
 
-    <form id="product-form" class="flex flex-col space-y-4" action="/products" method="post">
-        <div class="flex items-center">
-            <label for="product-name" class="mr-2">
+            <div class="">
+                <label for="email">
+                    Email Address
+                </label>
+                <input id="customer-email" name="customer-email" type="email" placeholder="mario.rossi@example.com"
+                    required />
+            </div>
+
+            <button id="customer-submit-button">Create Customer</button>
+        </form>
+    </div>
+    <form id="product-form" class="flex flex-col" action="/products" method="post">
+        <div class="">
+            <label for="product-name">
                 Product Name
             </label>
             <input id="product-name" class="grow items-center outline-black px-2" name="product-name"
@@ -35,46 +61,12 @@
             Product</button>
     </form>
 
-    <form id="customer-form" class="hidden flex flex-col" action="/customer" method="post">
-        <div class="">
-            <label for="customer-name">
-                Name
-            </label>
-            <input id="customer-name" name="customer-name" placeholder="Mario Rossi" required />
-        </div>
-
-        <div class="">
-            <label for="email">
-                Email Address
-            </label>
-            <input id="customer-email" name="customer-email" type="email" placeholder="mario.rossi@example.com"
-                required />
-        </div>
-
-        <button id="customer-submit-button">Create Customer</button>
-    </form>
-
-    <form id="payment-form" class="hidden flex flex-col" action="/payment-intent" method="post">
-        <div class="">
-            <input id="customer-id" name="customer-id" class="hidden" required />
-        </div>
-        <div class="">
-            <label for="payment-amount">
-                Amount
-            </label>
-            <input id="payment-amount" name="payment-amount" placeholder="1000" required />
-        </div>
-        <div class="">
-            <label for="payment-currency">
-                Currency
-            </label>
-            <input id="payment-currency" name="payment-currency" placeholder="eur" required />
-        </div>
+    <form id="setup-intent-form" class="hidden flex flex-col" action="/setup-intent" method="post">
         <div class="">
             <label for="payment-method">
                 Payment Method
             </label>
-            <input id="payment-method" name="payment-method" placeholder="sepa" required />
+            <input id="payment-method" name="payment-method" placeholder="sepa_debit" required />
         </div>
 
         <button id="payment-submit-button">Go to Payment</button>
@@ -82,6 +74,7 @@
 
     <!-- Add the client_secret from the PaymentIntent as a data attribute   -->
     <form class="hidden" action="/charge" method="post" id="stripe-form">
+
         <input id="price-id" name="price-id" class="hidden" required />
 
         <div class="form-row inline">
@@ -135,11 +128,16 @@
         <div id="error-message" role="alert"></div>
     </form>
 
+    <form class="hidden" action="/sub" method="post" id="subscription-form">
+        <button id="subscribe-button">Subscribe!</button>
+    </form>
+
     <script src="src/globals.js"></script>
     <script src="src/product.js"></script>
     <script src="src/customer.js"></script>
-    <script src="src/payment-intent.js"></script>
-    <script src="src/stripe.js"></script>
+    <script src="src/setup-intent.js"></script>
+    <script src="src/collect-debit-payment.js"></script>
+    <script src="src/subscription.js"></script>
 </body>
 
 </html>

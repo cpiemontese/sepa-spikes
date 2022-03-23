@@ -4,7 +4,7 @@
   const productPrice = document.getElementById('product-price');
 
   const priceId = document.getElementById('price-id');
-  const customerForm = document.getElementById('customer-form');
+  const setupIntentForm = document.getElementById('setup-intent-form');
 
   function sanitizePrice (price) {
     return parseFloat(price).toFixed(2)
@@ -19,8 +19,8 @@
       .then(data => {
         console.log({ product: data });
         form.classList.add('hidden');
-        customerForm.classList.remove('hidden');
         priceId.value = data.id;
+        setupIntentForm.classList.remove('hidden');
       })
       .catch((error) => {
         console.error({ product: error });

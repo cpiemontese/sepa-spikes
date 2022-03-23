@@ -1,25 +1,19 @@
+
 (() => {
   const form = document.getElementById('customer-form');
   const paymentForm = document.getElementById('payment-form');
   const customerName = document.getElementById('customer-name');
   const customerEmail = document.getElementById('customer-email');
+  const select = document.getElementById('customer-id');
 
-  async function postData (url = '', data = {}) {
-    const response = await fetch(url, {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      // include, *same-origin, omit
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(data)
-    });
-    return response.json();
-  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+  get(`${SERVER_URL}/customers`)
+    .then(data => {
+      data.data.forEach(customer => {
+       select.appendChild(new Option(customer.name, customer.id));
+      }); 
+    })
+  });
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
