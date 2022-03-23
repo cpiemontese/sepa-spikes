@@ -69,16 +69,16 @@
       });
   });
 
-  function setAsDefaultPaymentMethod(paymentMethod) {
+  function setAsDefaultPaymentMethod (paymentMethod) {
     let customerId = document.getElementById('customer-id').value;
-    postData(`${SERVER_URL}/customers/${customerId}`, {payment_method: paymentMethod})
-    .then((data) => {
-      console.log({result: data});
-      form.classList.add('hidden')
-      subscriptionForm.classList.remove('hidden')
-    }).catch((error)=> {
-      console.error({error: error});
-      Flash.failure('Could not set the default payment')
-    })
+    post(`${SERVER_URL}/customers/${customerId}`, { payment_method: paymentMethod })
+      .then((data) => {
+        console.log({ result: data });
+        form.classList.add('hidden')
+        subscriptionForm.classList.remove('hidden')
+      }).catch((error) => {
+        console.error({ error: error });
+        Flash.failure('Could not set the default payment')
+      })
   }
 })();

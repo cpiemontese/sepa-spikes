@@ -7,7 +7,7 @@
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        postData(`${SERVER_URL}/setup-intents`, { customer_id: customerId.value, payment_method: paymentMethod.value})
+        post(`${SERVER_URL}/setup-intents`, { customer_id: customerId.value, payment_method: paymentMethod.value })
             .then(paymentIntent => {
                 console.log({ paymentIntent });
                 form.classList.add('hidden');

@@ -7,27 +7,10 @@
 
   const stripeForm = document.getElementById('stripe-form');
 
-  async function postData (url = '', data = {}) {
-    const response = await fetch(url, {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      // include, *same-origin, omit
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(data)
-    });
-    return response.json();
-  }
-
   form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    postData(`${SERVER_URL}/payment-intents`, { customer_id: customerId.value, amount: amount.value, payment_method: paymentMethod.value, currency: currency.value })
+    post(`${SERVER_URL}/payment-intents`, { customer_id: customerId.value, amount: amount.value, payment_method: paymentMethod.value, currency: currency.value })
       .then(paymentIntent => {
         console.log({ paymentIntent });
         form.classList.add('hidden');

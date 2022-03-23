@@ -7,18 +7,18 @@
   const select = document.getElementById('customer-id');
 
   window.addEventListener('DOMContentLoaded', (event) => {
-  get(`${SERVER_URL}/customers`)
-    .then(data => {
-      data.data.forEach(customer => {
-       select.appendChild(new Option(customer.name, customer.id));
-      }); 
-    })
+    get(`${SERVER_URL}/customers`)
+      .then(data => {
+        data.data.forEach(customer => {
+          select.appendChild(new Option(customer.name, customer.id));
+        });
+      })
   });
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    postData(`${SERVER_URL}/customers`, { name: customerName.value, email: customerEmail.value })
+    post(`${SERVER_URL}/customers`, { name: customerName.value, email: customerEmail.value })
       .then(data => {
         console.log({ customer: data });
         form.classList.add('hidden');

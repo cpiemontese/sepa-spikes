@@ -15,7 +15,7 @@
 
     console.log({ payload: { name: productName.value, price: sanitizePrice(productPrice.value) } });
 
-    postData(`${SERVER_URL}/products`, { name: productName.value, price: sanitizePrice(productPrice.value) })
+    post(`${SERVER_URL}/products`, { name: productName.value, price: sanitizePrice(productPrice.value) })
       .then(data => {
         console.log({ product: data });
         form.classList.add('hidden');

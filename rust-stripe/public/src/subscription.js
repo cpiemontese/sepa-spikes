@@ -4,16 +4,16 @@
     const priceId = document.getElementById('price-id');
 
     form.addEventListener('submit', (event) => {
-         event.preventDefault();
+        event.preventDefault();
 
-        postData(`${SERVER_URL}/subscriptions`, { customer_id: customerId.value, price_id: priceId.value })
-            .then( data=> {
+        post(`${SERVER_URL}/subscriptions`, { customer_id: customerId.value, price_id: priceId.value })
+            .then(data => {
                 Flash.success('Subscription Done!');
-                console.log({ subscription_output:  data});
+                console.log({ subscription_output: data });
             })
             .catch((error) => {
                 console.error({ error: error });
-                Flash.failure('Something went wrong while creating a new subscription'); 
+                Flash.failure('Something went wrong while creating a new subscription');
             });
     });
 })();
