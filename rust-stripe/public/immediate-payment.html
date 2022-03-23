@@ -18,19 +18,20 @@
             <label for="customer-name" class="mr-2">
                 Name
             </label>
-            <input id="customer-name" class="grow items-center" name="customer-name" placeholder="Mario Rossi"
-                required />
+            <input id="customer-name" class="grow items-center outline-black px-2" name="customer-name"
+                placeholder="Mario Rossi" required />
         </div>
 
         <div class="flex items-center">
             <label for="email" class="mr-2">
                 Email Address
             </label>
-            <input id="customer-email" class="grow items-center" name="customer-email" type="email"
+            <input id="customer-email" class="grow items-center outline-black px-2" name="customer-email" type="email"
                 placeholder="mario.rossi@example.com" required />
         </div>
 
-        <button id="customer-submit-button" class="h-10 border-2 border-black">Create Customer</button>
+        <button id="customer-submit-button" class="h-10 border-2 border-black active:bg-black active:text-white">Create
+            Customer</button>
     </form>
 
     <form id="payment-form" class="hidden flex flex-col space-y-4" action="/payment-intent" method="post">
@@ -40,22 +41,26 @@
             <label for="payment-amount" class="mr-2">
                 Amount
             </label>
-            <input id="payment-amount" class="grow items-center" name="payment-amount" placeholder="1000" required />
+            <input id="payment-amount" class="grow items-center outline-black px-2" name="payment-amount"
+                placeholder="1000" required />
         </div>
         <div class="flex items-center">
             <label for="payment-currency" class="mr-2">
                 Currency
             </label>
-            <input id="payment-currency" class="grow items-center" name="payment-currency" placeholder="eur" required />
+            <input id="payment-currency" class="grow items-center outline-black px-2" name="payment-currency"
+                placeholder="eur" required />
         </div>
         <div class="flex items-center">
-            <label for="payment-method">
+            <label for="payment-method" class="mr-2">
                 Payment Method
             </label>
-            <input id="payment-method" class="grow items-center" name="payment-method" placeholder="sepa" required />
+            <input id="payment-method" class="grow items-center outline-black px-2" name="payment-method"
+                placeholder="sepa" required />
         </div>
 
-        <button id="payment-submit-button" class="h-10 border-2 border-black">Go to Payment</button>
+        <button id="payment-submit-button" class="h-10 border-2 border-black active:bg-black active:text-white">Go to
+            Payment</button>
     </form>
 
     <!-- Add the client_secret from the PaymentIntent as a data attribute   -->
@@ -64,7 +69,7 @@
             <label for="stripe-customer-name" class="mr-2">
                 Name
             </label>
-            <input id="stripe-customer-name" class="grow items-center" name="stripe-customer-name"
+            <input id="stripe-customer-name" class="grow items-center outline-black px-2" name="stripe-customer-name"
                 placeholder="Jenny Rosen" required />
         </div>
 
@@ -72,8 +77,8 @@
             <label for="stripe-customer-email" class="mr-2">
                 Email Address
             </label>
-            <input id="stripe-customer-email" class="grow items-center" name="stripe-customer.email" type="email"
-                placeholder="jenny.rosen@example.com" required />
+            <input id="stripe-customer-email" class="grow items-center outline-black px-2" name="stripe-customer.email"
+                type="email" placeholder="jenny.rosen@example.com" required />
         </div>
 
         <div class="flex items-center">
@@ -85,12 +90,13 @@
             <label for="iban-element" class="mr-2">
                 IBAN
             </label>
-            <div class="grow items-center" id="iban-element">
+            <div class="grow items-center outline-black px-2" id="iban-element">
                 <!-- A Stripe Element will be inserted here. -->
             </div>
         </div>
 
-        <button id="submit-button" class="h-10 border-2 border-black">Submit Payment</button>
+        <button id="submit-button" class="h-10 border-2 border-black active:bg-black active:text-white">Submit
+            Payment</button>
 
         <!-- Display mandate acceptance text. -->
         <div id="mandate-acceptance">
