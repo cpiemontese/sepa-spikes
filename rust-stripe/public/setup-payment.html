@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stripe SEPA Spike</title>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="flash-message" class=""></div>
+
+    <form id="customer-form" class="flex flex-col" action="/customer" method="post">
+        <div class="">
+            <label for="customer-name">
+                Name
+            </label>
+            <input id="customer-name" name="customer-name" placeholder="Mario Rossi" required />
+        </div>
+
+        <div class="">
+            <label for="email">
+                Email Address
+            </label>
+            <input id="customer-email" name="customer-email" type="email" placeholder="mario.rossi@example.com"
+                required />
+        </div>
+
+        <button id="customer-submit-button">Create Customer</button>
+    </form>
+
+    <form id="payment-form" class="hidden flex flex-col" action="/payment-intent" method="post">
+        <div class="">
+            <input id="customer-id" name="customer-id" class="hidden" required />
+        </div>
+        <div class="">
+            <label for="payment-amount">
+                Amount
+            </label>
+            <input id="payment-amount" name="payment-amount" placeholder="1000" required />
+        </div>
+        <div class="">
+            <label for="payment-currency">
+                Currency
+            </label>
+            <input id="payment-currency" name="payment-currency" placeholder="eur" required />
+        </div>
+        <div class="">
+            <label for="payment-method">
+                Payment Method
+            </label>
+            <input id="payment-method" name="payment-method" placeholder="sepa" required />
+        </div>
+
+        <button id="payment-submit-button">Go to Payment</button>
+    </form>
+
+    <!-- Add the client_secret from the PaymentIntent as a data attribute   -->
+    <form class="hidden" action="/charge" method="post" id="stripe-form">
+        <div class="form-row inline">
+            <div class="col">
+                <label for="stripe-customer-name">
+                    Name
+                </label>
+                <input id="stripe-customer-name" name="stripe-customer-name" placeholder="Jenny Rosen" required />
+            </div>
+
+            <div class="col">
+                <label for="stripe-customer-email">
+                    Email Address
+                </label>
+                <input id="stripe-customer-email" name="stripe-customer.email" type="email"
+                    placeholder="jenny.rosen@example.com" required />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <!--
+          Using a label with a for attribute that matches the ID of the
+          Element container enables the Element to automatically gain focus
+          when the customer clicks on the label.
+        -->
+            <label for="iban-element">
+                IBAN
+            </label>
+            <div id="iban-element">
+                <!-- A Stripe Element will be inserted here. -->
+            </div>
+        </div>
+
+        <button id="submit-button">Submit Payment</button>
+
+        <!-- Display mandate acceptance text. -->
+        <div id="mandate-acceptance">
+            By providing your payment information and confirming this payment, you
+            authorise (A) Rocket Rides and Stripe, our payment service provider
+            and/or PPRO, its local service provider, to send instructions to your
+            bank to debit your account and (B) your bank to debit your account in
+            accordance with those instructions. As part of your rights, you are
+            entitled to a refund from your bank under the terms and conditions of
+            your agreement with your bank. A refund must be claimed within 8 weeks
+            starting from the date on which your account was debited. Your rights
+            are explained in a statement that you can obtain from your bank. You
+            agree to receive notifications for future debits up to 2 days before
+            they occur.
+        </div>
+        <!-- Used to display form errors. -->
+        <div id="error-message" role="alert"></div>
+    </form>
+
+    <script src="src/globals.js"></script>
+    <script src="src/customer.js"></script>
+    <script src="src/payment-intent.js"></script>
+    <script src="src/stripe.js"></script>
+</body>
+
+</html>
