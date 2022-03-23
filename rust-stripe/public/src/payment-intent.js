@@ -29,6 +29,7 @@
 
     postData(`${SERVER_URL}/payment-intents`, { customer_id: customerId.value, amount: amount.value, payment_method: paymentMethod.value, currency: currency.value })
       .then(paymentIntent => {
+        console.log({ paymentIntent });
         form.classList.add('hidden');
         stripeForm.classList.remove('hidden');
         stripeForm.dataset.secret = paymentIntent.client_secret;
