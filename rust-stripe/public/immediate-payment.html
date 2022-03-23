@@ -10,88 +10,87 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body>
+<body class="sm:w-9/12 sm:mx-auto m-4">
     <div id="flash-message" class=""></div>
 
-    <form id="customer-form" class="flex flex-col" action="/customer" method="post">
-        <div class="">
-            <label for="customer-name">
+    <form id="customer-form" class="flex flex-col space-y-4" action="/customer" method="post">
+        <div class="flex items-center">
+            <label for="customer-name" class="mr-2">
                 Name
             </label>
-            <input id="customer-name" name="customer-name" placeholder="Mario Rossi" required />
-        </div>
-
-        <div class="">
-            <label for="email">
-                Email Address
-            </label>
-            <input id="customer-email" name="customer-email" type="email" placeholder="mario.rossi@example.com"
+            <input id="customer-name" class="grow items-center" name="customer-name" placeholder="Mario Rossi"
                 required />
         </div>
 
-        <button id="customer-submit-button">Create Customer</button>
+        <div class="flex items-center">
+            <label for="email" class="mr-2">
+                Email Address
+            </label>
+            <input id="customer-email" class="grow items-center" name="customer-email" type="email"
+                placeholder="mario.rossi@example.com" required />
+        </div>
+
+        <button id="customer-submit-button" class="h-10 border-2 border-black">Create Customer</button>
     </form>
 
-    <form id="payment-form" class="hidden flex flex-col" action="/payment-intent" method="post">
-        <div class="">
-            <input id="customer-id" name="customer-id" class="hidden" required />
-        </div>
-        <div class="">
-            <label for="payment-amount">
+    <form id="payment-form" class="hidden flex flex-col space-y-4" action="/payment-intent" method="post">
+        <input id="customer-id" name="customer-id" class="hidden" required />
+
+        <div class="flex items-center">
+            <label for="payment-amount" class="mr-2">
                 Amount
             </label>
-            <input id="payment-amount" name="payment-amount" placeholder="1000" required />
+            <input id="payment-amount" class="grow items-center" name="payment-amount" placeholder="1000" required />
         </div>
-        <div class="">
-            <label for="payment-currency">
+        <div class="flex items-center">
+            <label for="payment-currency" class="mr-2">
                 Currency
             </label>
-            <input id="payment-currency" name="payment-currency" placeholder="eur" required />
+            <input id="payment-currency" class="grow items-center" name="payment-currency" placeholder="eur" required />
         </div>
-        <div class="">
+        <div class="flex items-center">
             <label for="payment-method">
                 Payment Method
             </label>
-            <input id="payment-method" name="payment-method" placeholder="sepa" required />
+            <input id="payment-method" class="grow items-center" name="payment-method" placeholder="sepa" required />
         </div>
 
-        <button id="payment-submit-button">Go to Payment</button>
+        <button id="payment-submit-button" class="h-10 border-2 border-black">Go to Payment</button>
     </form>
 
     <!-- Add the client_secret from the PaymentIntent as a data attribute   -->
-    <form class="hidden" action="/charge" method="post" id="stripe-form">
-        <div class="form-row inline">
-            <div class="col">
-                <label for="stripe-customer-name">
-                    Name
-                </label>
-                <input id="stripe-customer-name" name="stripe-customer-name" placeholder="Jenny Rosen" required />
-            </div>
-
-            <div class="col">
-                <label for="stripe-customer-email">
-                    Email Address
-                </label>
-                <input id="stripe-customer-email" name="stripe-customer.email" type="email"
-                    placeholder="jenny.rosen@example.com" required />
-            </div>
+    <form class="hidden flex flex-col space-y-4" action="/charge" method="post" id="stripe-form">
+        <div class="flex items-center">
+            <label for="stripe-customer-name" class="mr-2">
+                Name
+            </label>
+            <input id="stripe-customer-name" class="grow items-center" name="stripe-customer-name"
+                placeholder="Jenny Rosen" required />
         </div>
 
-        <div class="form-row">
+        <div class="flex items-center">
+            <label for="stripe-customer-email" class="mr-2">
+                Email Address
+            </label>
+            <input id="stripe-customer-email" class="grow items-center" name="stripe-customer.email" type="email"
+                placeholder="jenny.rosen@example.com" required />
+        </div>
+
+        <div class="flex items-center">
             <!--
           Using a label with a for attribute that matches the ID of the
           Element container enables the Element to automatically gain focus
           when the customer clicks on the label.
         -->
-            <label for="iban-element">
+            <label for="iban-element" class="mr-2">
                 IBAN
             </label>
-            <div id="iban-element">
+            <div class="grow items-center" id="iban-element">
                 <!-- A Stripe Element will be inserted here. -->
             </div>
         </div>
 
-        <button id="submit-button">Submit Payment</button>
+        <button id="submit-button" class="h-10 border-2 border-black">Submit Payment</button>
 
         <!-- Display mandate acceptance text. -->
         <div id="mandate-acceptance">

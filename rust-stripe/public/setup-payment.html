@@ -10,26 +10,26 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body>
+<body class="sm:w-9/12 sm:mx-auto m-4">
     <div id="flash-message" class=""></div>
 
-    <form id="product-form" class="flex flex-col" action="/products" method="post">
-        <div class="">
-            <label for="product-name">
+    <form id="product-form" class="flex flex-col space-y-4" action="/products" method="post">
+        <div class="flex items-center">
+            <label for="product-name" class="mr-2">
                 Product Name
             </label>
-            <input id="product-name" name="product-name" placeholder="Mario Rossi" required />
+            <input id="product-name" class="grow items-center" name="product-name" placeholder="Mario Rossi" required />
         </div>
 
-        <div class="">
-            <label for="product-price">
+        <div class="flex items-center">
+            <label for="product-price" class="mr-2">
                 Product Price (EUR)
             </label>
-            <input id="product-price" name="product-price" type="number" min="1" step="any" placeholder="1.0"
-                required />
+            <input id="product-price" class="grow items-center" name="product-price" type="number" min="1" step="any"
+                placeholder="1.0" required />
         </div>
 
-        <button id="customer-submit-button">Create Product</button>
+        <button id="customer-submit-button" class="h-10 border-2 border-black">Create Product</button>
     </form>
 
     <form id="customer-form" class="hidden flex flex-col" action="/customer" method="post">
