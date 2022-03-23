@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body class="sm:w-9/12 sm:mx-auto m-4">
+<body class="sm:w-1/2 lg:w-1/3 sm:mx-auto m-4">
     <div id="flash-message" class=""></div>
 
     <form id="customer-form" class="flex flex-col space-y-4" action="/customer" method="post">
@@ -30,7 +30,8 @@
                 placeholder="mario.rossi@example.com" required />
         </div>
 
-        <button id="customer-submit-button" class="h-10 border-2 border-black active:bg-black active:text-white">Create
+        <button id="customer-submit-button"
+            class="h-10 border-2 border-black active:bg-black active:text-white transition">Create
             Customer</button>
     </form>
 
@@ -59,7 +60,8 @@
                 placeholder="sepa" required />
         </div>
 
-        <button id="payment-submit-button" class="h-10 border-2 border-black active:bg-black active:text-white">Go to
+        <button id="payment-submit-button"
+            class="h-10 border-2 border-black active:bg-black active:text-white transition">Go to
             Payment</button>
     </form>
 
@@ -95,7 +97,8 @@
             </div>
         </div>
 
-        <button id="submit-button" class="h-10 border-2 border-black active:bg-black active:text-white">Submit
+        <button id="submit-button"
+            class="h-10 border-2 border-black active:bg-black active:text-white transition">Submit
             Payment</button>
 
         <!-- Display mandate acceptance text. -->

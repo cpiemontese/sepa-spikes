@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body class="sm:w-9/12 sm:mx-auto m-4">
+<body class="sm:w-1/2 lg:w-1/3 sm:mx-auto m-4">
     <div id="flash-message" class=""></div>
 
     <form id="product-form" class="flex flex-col space-y-4" action="/products" method="post">
@@ -30,7 +30,8 @@
                 min="1" step="any" placeholder="1.0" required />
         </div>
 
-        <button id="customer-submit-button" class="h-10 border-2 border-black active:bg-black active:text-white">Create
+        <button id="customer-submit-button"
+            class="h-10 border-2 border-black active:bg-black active:text-white transition">Create
             Product</button>
     </form>
 
