@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use reqwest::{Client, Url};
+use serde::{Deserialize, Serialize};
 #[derive(Clone)]
 pub struct Stripe {
     client: Client,
@@ -38,6 +39,48 @@ impl Stripe {
         resp
     }
 
+    pub async fn create_a_product(&self, product_name: &str, product_price: &str) -> Price {
+        let product_form_data = HashMap::from([("name".to_string(), product_name)]);
+
+        let product: Product = self
+            .client
+            .post(self.stripe_url.join("products").unwrap())
+            .form(&product_form_data)
+            .basic_auth::<&str, String>(&self.secret_key, None)
+            .send()
+            .await
+            .unwrap()
+            .json()
+            .await
+            .unwrap();
+
+        let fixed_price: f32 = product_price.parse().unwrap();
+
+        let price_form_data = HashMap::from([
+            ("product".to_string(), product.id),
+            (
+                "unit_amount".to_string(),
+                ((fixed_price * 100_f32) as i32).to_string(),
+            ),
+            ("currency".to_string(), "eur".to_string()),
+            ("recurring[interval]".to_string(), "day".to_string()),
+        ]);
+
+        let price: Price = self
+            .client
+            .post(self.stripe_url.join("prices").unwrap())
+            .form(&price_form_data)
+            .basic_auth::<&str, String>(&self.secret_key, None)
+            .send()
+            .await
+            .unwrap()
+            .json()
+            .await
+            .unwrap();
+
+        price
+    }
+
     pub async fn create_a_payment_intent(
         &self,
         customer_id: String,
@@ -66,4 +109,14 @@ impl Stripe {
 
         resp.unwrap()
     }
+}
+
+#[derive(Serialize, Deserialize)]
+struct Product {
+    id: String,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Price {
+    pub id: String,
 }

@@ -22,6 +22,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .app_data(stripe)
             .service(routes::customer)
+            .service(routes::product)
             .service(routes::create_payment_intent)
             .service(Files::new("/", "./public").index_file("index.html"))
     })

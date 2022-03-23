@@ -1,6 +1,23 @@
 const SERVER_URL = 'http://localhost:8080';
 const STRIPE_PUBLIC_KEY = 'pk_test_51KfjAzD9axmx7ico2Sa1hQivJdJvXZ5Yx6ssC9vZ3vwRCADlsXJgDYiRj07LWehg2pLfYYkpVIhW0X1E2kLw9pgj00BmqmTPM1';
 
+async function postData (url = '', data = {}) {
+	const response = await fetch(url, {
+		method: 'POST',
+		mode: 'cors',
+		cache: 'no-cache',
+		// include, *same-origin, omit
+		credentials: 'same-origin',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		redirect: 'follow',
+		referrerPolicy: 'no-referrer',
+		body: JSON.stringify(data)
+	});
+	return response.json();
+}
+
 const Flash = (() => {
 	const _FLASH_MESSAGE = document.getElementById('flash-message')
 
