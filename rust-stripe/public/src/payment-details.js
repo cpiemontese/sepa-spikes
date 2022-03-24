@@ -1,4 +1,4 @@
-(() => {
+const PaymentDetails = (() => {
   const customerSelect = document.getElementById('customer-id');
   const productSelect = document.getElementById('product-id');
 
@@ -28,7 +28,6 @@
         data.data.forEach(price => {
           const productOption = new Option(`${price.product.name} - ${price.unit_amount / 100.0}€`, price.product.id);
           productOption.dataset.priceId = price.id;
-          productOption.dataset.productId = price.product.id;
           productSelect.appendChild(productOption);
         });
       })
@@ -37,5 +36,35 @@
         console.error({ prices: error });
       })
   });
+
+  const paymentDetailsForm = document.getElementById('payment-details-form');
+  const setupIntentForm = document.getElementById('setup-intent-form');
+
+  paymentDetailsForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    customerSelect.setAttribute('disabled', 'true');
+    productSelect.setAttribute('disabled', 'true');
+
+    setupIntentForm.classList.remove('hidden');
+  })
+
+  return {
+    getSelectedCustomer () {
+      const selectedCustomer = customerSelect.options[customerSelect.selectedIndex]
+      return {
+        id: selectedCustomer.value,
+        name: selectedCustomer.dataset.name,
+        email: selectedCustomer.dataset.email
+      };
+    },
+    getSelectedProduct () {
+      const selectedProduct = productSelect.options[productSelect.selectedIndex]
+      return {
+        id: selectedProduct.value,
+        priceId: selectedProduct.dataset.priceId,
+      };
+    }
+  }
 })();
 
