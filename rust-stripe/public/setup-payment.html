@@ -45,27 +45,27 @@
     </form>
 
     <form id="stripe-form" class="hidden flex flex-col space-y-4" action="/charge" method="post">
-        <a href="https://stripe.com/docs/testing#sepa-direct-debit"
-            class="flex items-center justify-center w-full h-10 border-2 border-black active:bg-black active:text-white transition">See
-            more IBANs for
-            testing</a>
-
+        <h1 class="text-xl">IBANs for testing</h1>
         <dl>
-            <dt><a class="iban-number" href="#">NL39RABO0300065264</a></dt>
-            <dd>The PaymentIntent status transitions from processing to succeeded.</dd>
+            <dt class="font-bold"><a class="iban-number" href="#">NL39RABO0300065264</a>📋</dt>
+            <dd class="text-gray-500">The PaymentIntent status transitions from processing to succeeded.</dd>
 
-            <dt><a class="iban-number" href="#">NL55RABO0300065267</a></dt>
-            <dd>The PaymentIntent status transitions from processing to succeeded after three minutes.</dd>
+            <dt class="font-bold"><a class="iban-number" href="#">NL55RABO0300065267</a>📋</dt>
+            <dd class="text-gray-500">The PaymentIntent status transitions from processing to succeeded after three
+                minutes.</dd>
 
-            <dt><a class="iban-number" href="#">NL91ABNA0417164300</a></dt>
-            <dd>The PaymentIntent status transitions from processing to requires_payment_method.</dd>
-
-            <dt><a class="iban-number" href="#">NL28RABO0300065268</a></dt>
-            <dd>The PaymentIntent status transitions from processing to requires_payment_method after three minutes.
+            <dt class="font-bold"><a class="iban-number" href="#">NL91ABNA0417164300</a>📋</dt>
+            <dd class="text-gray-500">The PaymentIntent status transitions from processing to requires_payment_method.
             </dd>
 
-            <dt><a class="iban-number" href="#">NL82RABO0300065266</a></dt>
-            <dd>The PaymentIntent status transitions from processing to succeeded, but a dispute is immediately created.
+            <dt class="font-bold"><a class="iban-number" href="#">NL28RABO0300065268</a>📋</dt>
+            <dd class="text-gray-500">The PaymentIntent status transitions from processing to requires_payment_method
+                after three minutes.
+            </dd>
+
+            <dt class="font-bold"><a class="iban-number" href="#">NL82RABO0300065266</a>📋</dt>
+            <dd class="text-gray-500">The PaymentIntent status transitions from processing to succeeded, but a dispute
+                is immediately created.
             </dd>
         </dl>
 
