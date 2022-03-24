@@ -47,6 +47,8 @@ const PaymentDetails = (() => {
     productSelect.setAttribute('disabled', 'true');
 
     setupIntentForm.classList.remove('hidden');
+
+    document.getElementById('payment-details-button').classList.add('hidden');
   })
 
   return {

@@ -41,26 +41,28 @@
 
   const form = document.getElementById('stripe-form');
   const subscriptionForm = document.getElementById('subscription-form');
-  const stripeCustomerName = document.getElementById('stripe-customer-name');
-  const stripeCustomerEmail = document.getElementById('stripe-customer-email');
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    const { name: customerName, email: customerEmail } = PaymentDetails.getSelectedCustomer();
+
+    console.log(customerName, customerEmail);
+
     stripe.confirmSepaDebitSetup(
       form.dataset.secret,
       {
         payment_method: {
           sepa_debit: iban,
           billing_details: {
-            name: stripeCustomerName.value,
-            email: stripeCustomerEmail.value,
+            name: customerName,
+            email: customerEmail,
           },
         },
       }
     )
       .then((data) => {
         console.log({ sepaPayment: data });
-        Flash.success('Payment completed successfully!');
         setAsDefaultPaymentMethod(data.setupIntent.payment_method);
       })
       .catch((error) => {
@@ -70,7 +72,8 @@
   });
 
   function setAsDefaultPaymentMethod (paymentMethod) {
-    let customerId = document.getElementById('customer-id').value;
+    const { id: customerId } = PaymentDetails.getSelectedCustomer();
+
     post(`${SERVER_URL}/customers/${customerId}`, { payment_method: paymentMethod })
       .then((data) => {
         console.log({ result: data });

@@ -40,9 +40,7 @@
         <button id="payment-submit-button">Go to Payment</button>
     </form>
 
-    <form class="hidden" action="/charge" method="post" id="stripe-form">
-        <input id="price-id" name="price-id" class="hidden" required />
-
+    <form id="stripe-form" class="hidden" action="/charge" method="post">
         <div class="form-row">
             <!--
           Using a label with a for attribute that matches the ID of the
@@ -84,7 +82,7 @@
     <script src="src/globals.js"></script>
     <script src="src/payment-details.js"></script>
     <script src="src/setup-intent.js"></script>
-    <script src="src/collect-debit-payment.js"></script>
+    <script src="src/stripe.js"></script>
     <script src="src/subscription.js"></script>
 </body>
 
