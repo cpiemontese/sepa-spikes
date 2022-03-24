@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stripe SEPA Spike</title>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body class="sm:w-1/2 lg:w-1/3 sm:mx-auto m-4">
+    <div id="flash-message" class="hidden text-lg p-4 mb-4"></div>
+
+    <form id="customer-form" class="flex flex-col space-y-4" action="/customer" method="post">
+        <div class="flex items-center">
+            <label for="customer-name" class="mr-2">
+                Name
+            </label>
+            <input id="customer-name" class="grow items-center outline-black px-2" name="customer-name"
+                placeholder="Mario Rossi" required />
+        </div>
+
+        <div class="flex items-center">
+            <label for="email" class="mr-2">
+                Email Address
+            </label>
+            <input id="customer-email" class="grow items-center outline-black px-2" name="customer-email" type="email"
+                placeholder="mario.rossi@example.com" required />
+        </div>
+
+        <button id="customer-submit-button"
+            class="h-10 border-2 border-black active:bg-black active:text-white transition">Create
+            Customer</button>
+    </form>
+
+    <script src="src/globals.js"></script>
+    <script src="src/customers.js"></script>
+</body>
+
+</html>

@@ -31,6 +31,21 @@ async function get (url = '') {
 	return response.json();
 }
 
+function fetchCustomersOnLoad () {
+	window.addEventListener('DOMContentLoaded', (event) => {
+		get(`${SERVER_URL}/customers`)
+			.then(data => {
+				data.data.forEach(customer => {
+					select.appendChild(new Option(customer.name, customer.id));
+				});
+			})
+			.catch(error => {
+				Flash.failure('Failed to fetch customers');
+				console.error({ customerFetch: error });
+			})
+	});
+}
+
 const Flash = (() => {
 	const _FLASH_MESSAGE = document.getElementById('flash-message')
 
@@ -47,7 +62,7 @@ const Flash = (() => {
 			// Avoid strange interactions in case a new flash arrives while another is still active
 			resetTimeout();
 
-			_FLASH_MESSAGE.innerHTML = msg;
+			_FLASH_MESSAGE.innerHTML = `${msg} 😃`;
 			_FLASH_MESSAGE.classList.remove('hidden');
 			_FLASH_MESSAGE.classList.remove('bg-red-300');
 			_FLASH_MESSAGE.classList.add('bg-green-300');
@@ -61,7 +76,7 @@ const Flash = (() => {
 			// Avoid strange interactions in case a new flash arrives while another is still active
 			resetTimeout();
 
-			_FLASH_MESSAGE.innerHTML = msg;
+			_FLASH_MESSAGE.innerHTML = `${msg} 😢`;
 			_FLASH_MESSAGE.classList.remove('hidden');
 			_FLASH_MESSAGE.classList.remove('bg-green-300');
 			_FLASH_MESSAGE.classList.add('bg-red-300');
