@@ -45,6 +45,30 @@
     </form>
 
     <form id="stripe-form" class="hidden flex flex-col space-y-4" action="/charge" method="post">
+        <a href="https://stripe.com/docs/testing#sepa-direct-debit"
+            class="flex items-center justify-center w-full h-10 border-2 border-black active:bg-black active:text-white transition">See
+            more IBANs for
+            testing</a>
+
+        <dl>
+            <dt><a class="iban-number" href="#">NL39RABO0300065264</a></dt>
+            <dd>The PaymentIntent status transitions from processing to succeeded.</dd>
+
+            <dt><a class="iban-number" href="#">NL55RABO0300065267</a></dt>
+            <dd>The PaymentIntent status transitions from processing to succeeded after three minutes.</dd>
+
+            <dt><a class="iban-number" href="#">NL91ABNA0417164300</a></dt>
+            <dd>The PaymentIntent status transitions from processing to requires_payment_method.</dd>
+
+            <dt><a class="iban-number" href="#">NL28RABO0300065268</a></dt>
+            <dd>The PaymentIntent status transitions from processing to requires_payment_method after three minutes.
+            </dd>
+
+            <dt><a class="iban-number" href="#">NL82RABO0300065266</a></dt>
+            <dd>The PaymentIntent status transitions from processing to succeeded, but a dispute is immediately created.
+            </dd>
+        </dl>
+
         <div class="flex items-center">
             <!--
           Using a label with a for attribute that matches the ID of the
@@ -85,6 +109,7 @@
     </form>
 
     <script src="src/globals.js"></script>
+    <script src="src/iban-copy.js"></script>
     <script src="src/payment-details.js"></script>
     <script src="src/setup-intent.js"></script>
     <script src="src/stripe.js"></script>
