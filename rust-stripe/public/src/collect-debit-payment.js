@@ -76,9 +76,10 @@
         console.log({ result: data });
         form.classList.add('hidden')
         subscriptionForm.classList.remove('hidden')
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.error({ error: error });
         Flash.failure('Could not set the default payment')
-      })
+      });
   }
 })();

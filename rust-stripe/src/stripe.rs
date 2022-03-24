@@ -18,9 +18,7 @@ impl Stripe {
         }
     }
 
-    pub async fn get_customers(
-        &self
-    ) -> reqwest::Response {
+    pub async fn get_customers(&self) -> reqwest::Response {
         let resp = self
             .client
             .get(self.stripe_url.join("customers").unwrap())
@@ -32,16 +30,24 @@ impl Stripe {
         resp
     }
 
+    pub async fn get_prices(&self) -> reqwest::Response {
+        let resp = self
+            .client
+            .get(self.stripe_url.join("prices").unwrap())
+            .basic_auth::<&str, String>(&self.secret_key, None)
+            .query(&[("expand[]", "data.product")])
+            .send()
+            .await
+            .unwrap();
 
-    pub async fn subscribe(
-        &self,
-        customer_id: &str,
-        price_id: &str,
-    ) -> reqwest::Response {
+        resp
+    }
+
+    pub async fn subscribe(&self, customer_id: &str, price_id: &str) -> reqwest::Response {
         let form_data = HashMap::from([
             ("customer", customer_id),
             ("items[0][price]", price_id),
-            ("expand[0]","latest_invoice.payment_intent"),
+            ("expand[0]", "latest_invoice.payment_intent"),
         ]);
         let resp = self
             .client
@@ -138,20 +144,22 @@ impl Stripe {
         resp.unwrap()
     }
 
-  pub async fn set_payment_method_as_default(
+    pub async fn set_payment_method_as_default(
         &self,
         payment_method: String,
         customer_id: String,
     ) -> reqwest::Response {
-        let form_data = HashMap::from([
-            (
-                "invoice_settings[default_payment_method]".to_string(),
-                payment_method.to_string(),
-            ),
-        ]);
+        let form_data = HashMap::from([(
+            "invoice_settings[default_payment_method]".to_string(),
+            payment_method.to_string(),
+        )]);
         let resp = self
             .client
-            .post(self.stripe_url.join(&format!("customers/{}", customer_id)).unwrap())
+            .post(
+                self.stripe_url
+                    .join(&format!("customers/{}", customer_id))
+                    .unwrap(),
+            )
             .form(&form_data)
             .basic_auth::<String, String>(self.secret_key.clone(), None)
             .send()

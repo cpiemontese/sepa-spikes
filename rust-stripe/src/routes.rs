@@ -1,4 +1,8 @@
-use actix_web::{post, web::{Json, Path}, HttpRequest, HttpResponse, get};
+use actix_web::{
+    get, post,
+    web::{Json, Path},
+    HttpRequest, HttpResponse,
+};
 use serde::{Deserialize, Serialize};
 
 use crate::stripe::{self, Stripe};
@@ -22,7 +26,7 @@ struct StripeCustomer {
 #[derive(Serialize, Deserialize)]
 pub struct SetupIntentCreated {
     id: String,
-    client_secret: String
+    client_secret: String,
 }
 #[derive(Serialize, Deserialize)]
 pub struct SetupIntentRequest {
@@ -47,22 +51,14 @@ pub struct Subscription {
     price_id: String,
 }
 
-
-
-
 #[get("/customers")]
 pub async fn customers(request: HttpRequest) -> HttpResponse {
     let stripe = request
         .app_data::<Stripe>()
         .expect("A client stripe is expected");
 
-    let customers  = stripe
-        .get_customers()
-        .await
-        .text()
-        .await
-        .unwrap();
-    
+    let customers = stripe.get_customers().await.text().await.unwrap();
+
     HttpResponse::Ok().body(customers)
 }
 
@@ -87,7 +83,7 @@ pub async fn subscriptions(subscription: Json<Subscription>, request: HttpReques
         .app_data::<Stripe>()
         .expect("A client stripe is expected");
 
-    let subscription_result  = stripe
+    let subscription_result = stripe
         .subscribe(&subscription.customer_id, &subscription.price_id)
         .await
         .text()
@@ -96,14 +92,20 @@ pub async fn subscriptions(subscription: Json<Subscription>, request: HttpReques
     HttpResponse::Ok().body(subscription_result)
 }
 #[post("/customers/{id}")]
-pub async fn set_default_payment(path: Path<String> ,default_payment: Json<DefaultPayment>, request: HttpRequest) -> HttpResponse {
+pub async fn set_default_payment(
+    path: Path<String>,
+    default_payment: Json<DefaultPayment>,
+    request: HttpRequest,
+) -> HttpResponse {
     let stripe = request
         .app_data::<Stripe>()
         .expect("A client stripe is expected");
 
     let customer_id = path.into_inner();
-    let response = stripe.set_payment_method_as_default(default_payment.payment_method.to_string(),customer_id).await;
-    
+    let response = stripe
+        .set_payment_method_as_default(default_payment.payment_method.to_string(), customer_id)
+        .await;
+
     HttpResponse::Ok().body(response.text().await.unwrap())
 }
 
@@ -149,6 +151,17 @@ pub async fn create_payment_intent(
         .await
         .unwrap();
     HttpResponse::Ok().json(stripe_customer)
+}
+
+#[get("/prices")]
+pub async fn prices(request: HttpRequest) -> HttpResponse {
+    let stripe = request
+        .app_data::<Stripe>()
+        .expect("A client stripe is expected");
+
+    let prices = stripe.get_prices().await.text().await.unwrap();
+
+    HttpResponse::Ok().body(prices)
 }
 
 #[post("/products")]

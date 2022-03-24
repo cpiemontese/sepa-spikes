@@ -21,11 +21,12 @@ async fn main() -> std::io::Result<()> {
 
         App::new()
             .app_data(stripe)
+            .service(routes::customer)
             .service(routes::customers)
             .service(routes::subscriptions)
-            .service(routes::customer)
             .service(routes::set_default_payment)
             .service(routes::product)
+            .service(routes::prices)
             .service(routes::create_payment_intent)
             .service(routes::setup_intents)
             .service(Files::new("/", "./public").index_file("index.html"))

@@ -31,21 +31,6 @@ async function get (url = '') {
 	return response.json();
 }
 
-function fetchCustomersOnLoad () {
-	window.addEventListener('DOMContentLoaded', (event) => {
-		get(`${SERVER_URL}/customers`)
-			.then(data => {
-				data.data.forEach(customer => {
-					select.appendChild(new Option(customer.name, customer.id));
-				});
-			})
-			.catch(error => {
-				Flash.failure('Failed to fetch customers');
-				console.error({ customerFetch: error });
-			})
-	});
-}
-
 const Flash = (() => {
 	const _FLASH_MESSAGE = document.getElementById('flash-message')
 

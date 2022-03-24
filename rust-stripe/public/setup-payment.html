@@ -12,53 +12,19 @@
 
 <body class="sm:w-1/2 lg:w-1/3 sm:mx-auto m-4">
     <div id="flash-message" class="hidden text-lg p-4 mb-4"></div>
-    <div id="customer">
-        <div class="" id="customer-selection">
-            <label for="customer-id">
-                Customer
-            </label>
-            <select id="customer-id">
-            </select>
-        </div>
-        <form id="customer-form" class="hidden flex flex-col" action="/customer" method="post">
-            <div class="">
-                <label for="customer-name">
-                    Name
-                </label>
-                <input id="customer-name" name="customer-name" placeholder="Mario Rossi" required />
-            </div>
 
-            <div class="">
-                <label for="email">
-                    Email Address
-                </label>
-                <input id="customer-email" name="customer-email" type="email" placeholder="mario.rossi@example.com"
-                    required />
-            </div>
-
-            <button id="customer-submit-button">Create Customer</button>
-        </form>
-    </div>
-    <form id="product-form" class="flex flex-col" action="/products" method="post">
-        <div class="">
-            <label for="product-name">
-                Product Name
-            </label>
-            <input id="product-name" class="grow items-center outline-black px-2" name="product-name"
-                placeholder="Mario Rossi" required />
+    <form id="payment-details-form" class="flex flex-col">
+        <div class="w-full p-2" id="customer-selection">
+            <label for="customer-id">Customer</label>
+            <select id="customer-id"></select>
         </div>
 
-        <div class="flex items-center">
-            <label for="product-price" class="mr-2">
-                Product Price (EUR)
-            </label>
-            <input id="product-price" class="grow items-center outline-black px-2" name="product-price" type="number"
-                min="1" step="any" placeholder="1.0" required />
+        <div class="w-full p-2" id="product-selection">
+            <label for="product-id">Product</label>
+            <select id="product-id"></select>
         </div>
 
-        <button id="customer-submit-button"
-            class="h-10 border-2 border-black active:bg-black active:text-white transition">Create
-            Product</button>
+        <button id="payment-details-button">Confirm payment details</button>
     </form>
 
     <form id="setup-intent-form" class="hidden flex flex-col" action="/setup-intent" method="post">
@@ -66,33 +32,16 @@
             <label for="payment-method">
                 Payment Method
             </label>
-            <input id="payment-method" name="payment-method" placeholder="sepa_debit" required />
+            <select id="payment-method" name="payment-method" placeholder="sepa_debit" required>
+                <option value="sepa_debit" selected>Sepa Debit</option>
+            </select>
         </div>
 
         <button id="payment-submit-button">Go to Payment</button>
     </form>
 
-    <!-- Add the client_secret from the PaymentIntent as a data attribute   -->
     <form class="hidden" action="/charge" method="post" id="stripe-form">
-
         <input id="price-id" name="price-id" class="hidden" required />
-
-        <div class="form-row inline">
-            <div class="col">
-                <label for="stripe-customer-name">
-                    Name
-                </label>
-                <input id="stripe-customer-name" name="stripe-customer-name" placeholder="Jenny Rosen" required />
-            </div>
-
-            <div class="col">
-                <label for="stripe-customer-email">
-                    Email Address
-                </label>
-                <input id="stripe-customer-email" name="stripe-customer.email" type="email"
-                    placeholder="jenny.rosen@example.com" required />
-            </div>
-        </div>
 
         <div class="form-row">
             <!--
@@ -108,7 +57,7 @@
             </div>
         </div>
 
-        <button id="submit-button">Submit Payment</button>
+        <button id="submit-button">Accept mandate terms</button>
 
         <!-- Display mandate acceptance text. -->
         <div id="mandate-acceptance">
@@ -133,8 +82,7 @@
     </form>
 
     <script src="src/globals.js"></script>
-    <script src="src/product.js"></script>
-    <script src="src/customer.js"></script>
+    <script src="src/payment-details.js"></script>
     <script src="src/setup-intent.js"></script>
     <script src="src/collect-debit-payment.js"></script>
     <script src="src/subscription.js"></script>
