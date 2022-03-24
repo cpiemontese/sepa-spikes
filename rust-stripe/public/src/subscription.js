@@ -1,5 +1,6 @@
 (() => {
     const form = document.getElementById('subscription-form');
+    const button = document.getElementById('subscription-button');
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -9,6 +10,7 @@
 
         post(`${SERVER_URL}/subscriptions`, { customer_id: customerId, price_id: priceId })
             .then(data => {
+                button.setAttribute('disabled', 'true');
                 console.log({ subscription_output: data });
                 Flash.success('Subscription completed successfully!');
             })

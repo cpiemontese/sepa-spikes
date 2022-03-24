@@ -1,5 +1,5 @@
 const SERVER_URL = 'http://localhost:8080';
-const STRIPE_PUBLIC_KEY = 'pk_test_51KfjALGPUghqTKYzy0efLlYBX9ltHTFjxgKWsEO5UgvP9UqTH71eB5LTalEYblX3wHdN4C80oO7duxDMaT1BdtC500JmberCRj';
+const STRIPE_PUBLIC_KEY = 'pk_test_51KfjAzD9axmx7ico2Sa1hQivJdJvXZ5Yx6ssC9vZ3vwRCADlsXJgDYiRj07LWehg2pLfYYkpVIhW0X1E2kLw9pgj00BmqmTPM1';
 
 async function post (url = '', data = {}) {
 	const response = await fetch(url, {

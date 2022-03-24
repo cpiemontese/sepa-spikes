@@ -47,8 +47,6 @@
 
     const { name: customerName, email: customerEmail } = PaymentDetails.getSelectedCustomer();
 
-    console.log(customerName, customerEmail);
-
     stripe.confirmSepaDebitSetup(
       form.dataset.secret,
       {
