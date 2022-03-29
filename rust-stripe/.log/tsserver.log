@@ -1,0 +1,46 @@
+Info 0    [11:11:58.117] Starting TS Server
+Info 1    [11:11:58.119] Version: 4.5.5
+Info 2    [11:11:58.119] Arguments: /Users/ale/.asdf/installs/nodejs/14.17.3/bin/node /Users/ale/.emacs.d/.local/etc/lsp/npm/typescript/lib/node_modules/typescript/lib/tsserver.js --logFile /Users/ale/Workspace/sepa-spikes/rust-stripe/.log/tsserver.log --logVerbosity info --cancellationPipeName /private/var/folders/3n/4xk2ndbx14s7l4h_xgzq5c_40000gp/T/b74e8ecf5f65ec43ea3dab2f30aa0778/tscancellation*
+Info 3    [11:11:58.119] Platform: darwin NodeVersion: 14 CaseSensitive: false
+Info 4    [11:11:58.119] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
+Info 5    [11:11:58.132] Format host information updated
+Info 6    [11:11:58.143] Search path: /Users/ale/Workspace/sepa-spikes/rust-stripe/public/src
+Info 7    [11:11:58.144] For info: /Users/ale/Workspace/sepa-spikes/rust-stripe/public/src/customers.js :: No config files found.
+Info 8    [11:11:58.148] Starting updateGraphWorker: Project: /dev/null/inferredProject1*
+Info 9    [11:11:58.838] Finishing updateGraphWorker: Project: /dev/null/inferredProject1* Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 689.3255080003291ms
+Info 10   [11:11:58.838] Project '/dev/null/inferredProject1*' (Inferred)
+Info 11   [11:11:58.838] 	Files (19)
+
+Info 12   [11:11:58.838] -----------------------------------------------
+Info 13   [11:12:10.814] Search path: /Users/ale/Workspace/sepa-spikes/rust-stripe/public/src
+Info 14   [11:12:10.814] For info: /Users/ale/Workspace/sepa-spikes/rust-stripe/public/src/subscription.js :: No config files found.
+Info 15   [11:12:10.814] Starting updateGraphWorker: Project: /dev/null/inferredProject2*
+Info 16   [11:12:10.834] Finishing updateGraphWorker: Project: /dev/null/inferredProject2* Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 19.528486999683082ms
+Info 17   [11:12:10.834] Project '/dev/null/inferredProject2*' (Inferred)
+Info 18   [11:12:10.834] 	Files (19)
+
+Info 19   [11:12:10.834] -----------------------------------------------
+Info 20   [11:12:23.611] Search path: /Users/ale/Workspace/sepa-spikes/rust-stripe/public/src
+Info 21   [11:12:23.611] For info: /Users/ale/Workspace/sepa-spikes/rust-stripe/public/src/payment-details.js :: No config files found.
+Info 22   [11:12:23.612] Starting updateGraphWorker: Project: /dev/null/inferredProject3*
+Info 23   [11:12:23.632] Finishing updateGraphWorker: Project: /dev/null/inferredProject3* Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 20.26382299978286ms
+Info 24   [11:12:23.632] Project '/dev/null/inferredProject3*' (Inferred)
+Info 25   [11:12:23.632] 	Files (19)
+
+Info 26   [11:12:23.632] -----------------------------------------------
+Info 27   [11:36:26.652] Search path: /Users/ale/Workspace/sepa-spikes/rust-stripe/public/src
+Info 28   [11:36:26.652] For info: /Users/ale/Workspace/sepa-spikes/rust-stripe/public/src/setup-intent.js :: No config files found.
+Info 29   [11:36:26.653] Starting updateGraphWorker: Project: /dev/null/inferredProject3*
+Info 30   [11:36:26.667] Finishing updateGraphWorker: Project: /dev/null/inferredProject3* Version: 2 structureChanged: true structureIsReused:: Not Elapsed: 14.089405000209808ms
+Info 31   [11:36:26.667] Project '/dev/null/inferredProject3*' (Inferred)
+Info 32   [11:36:26.667] 	Files (19)
+
+Info 33   [11:36:26.667] -----------------------------------------------
+Info 34   [11:36:35.287] Search path: /Users/ale/Workspace/sepa-spikes/rust-stripe/public/src
+Info 35   [11:36:35.287] For info: /Users/ale/Workspace/sepa-spikes/rust-stripe/public/src/payment-details.js :: No config files found.
+Info 36   [11:36:35.287] Starting updateGraphWorker: Project: /dev/null/inferredProject4*
+Info 37   [11:36:35.303] Finishing updateGraphWorker: Project: /dev/null/inferredProject4* Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 15.283738000318408ms
+Info 38   [11:36:35.303] Project '/dev/null/inferredProject4*' (Inferred)
+Info 39   [11:36:35.303] 	Files (19)
+
+Info 40   [11:36:35.303] -----------------------------------------------

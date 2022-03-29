@@ -168,6 +168,38 @@ impl Stripe {
         resp.unwrap()
     }
 
+    pub async fn pay(
+        &self,
+        customer_id: String,
+        amount: String,
+        payment_method: String,
+        mandate_id: String,
+    ) -> reqwest::Response {
+        let form = HashMap::from([
+            ("customer", customer_id),
+            ("currency", "eur".to_string()),
+            ("amount", amount),
+            ("payment_method", payment_method),
+            ("mandate", mandate_id),
+            ("confirm", "true".to_string()),
+            ("payment_method_types[]", "sepa_debit".to_string()),
+            (
+                "metadata[integration_checker]",
+                "sepa_debit_accept_a_payment".to_string(),
+            ),
+        ]);
+
+        let resp = self
+            .client
+            .post(self.stripe_url.join("payment_intents").unwrap())
+            .form(&form)
+            .basic_auth::<String, String>(self.secret_key.clone(), None)
+            .send()
+            .await;
+
+        resp.unwrap()
+    }
+
     pub async fn create_a_payment_intent(
         &self,
         customer_id: String,

@@ -2,6 +2,8 @@ extern crate dotenv;
 
 mod routes;
 mod stripe;
+mod webhook;
+mod enums;
 
 use actix_files::Files;
 use actix_web::{App, HttpServer};
@@ -29,6 +31,7 @@ async fn main() -> std::io::Result<()> {
             .service(routes::prices)
             .service(routes::create_payment_intent)
             .service(routes::setup_intents)
+            .service(webhook::webhook)
             .service(Files::new("/", "./public").index_file("index.html"))
     })
     .bind(("127.0.0.1", 8080))?

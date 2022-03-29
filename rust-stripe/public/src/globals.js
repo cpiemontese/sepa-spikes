@@ -1,12 +1,11 @@
 const SERVER_URL = 'http://localhost:8080';
-const STRIPE_PUBLIC_KEY = 'pk_test_51KfjAzD9axmx7ico2Sa1hQivJdJvXZ5Yx6ssC9vZ3vwRCADlsXJgDYiRj07LWehg2pLfYYkpVIhW0X1E2kLw9pgj00BmqmTPM1';
+const STRIPE_PUBLIC_KEY = 'pk_test_51KfjALGPUghqTKYzy0efLlYBX9ltHTFjxgKWsEO5UgvP9UqTH71eB5LTalEYblX3wHdN4C80oO7duxDMaT1BdtC500JmberCRj';
 
-async function post (url = '', data = {}) {
+async function post(url = '', data = {}) {
 	const response = await fetch(url, {
 		method: 'POST',
 		mode: 'cors',
 		cache: 'no-cache',
-		// include, *same-origin, omit
 		credentials: 'same-origin',
 		headers: {
 			'Content-Type': 'application/json'
@@ -18,12 +17,11 @@ async function post (url = '', data = {}) {
 	return response.json();
 }
 
-async function get (url = '') {
+async function get(url = '') {
 	const response = await fetch(url, {
 		method: 'GET',
 		mode: 'cors',
 		cache: 'no-cache',
-		// include, *same-origin, omit
 		credentials: 'same-origin',
 		redirect: 'follow',
 		referrerPolicy: 'no-referrer'
@@ -36,15 +34,14 @@ const Flash = (() => {
 
 	let lastTimeout = null
 
-	function resetTimeout () {
+	function resetTimeout() {
 		if (lastTimeout) {
 			clearTimeout(lastTimeout)
 		}
 	}
 
 	return {
-		success (msg) {
-			// Avoid strange interactions in case a new flash arrives while another is still active
+		success(msg) {
 			resetTimeout();
 
 			_FLASH_MESSAGE.innerHTML = `${msg} 😃`;
@@ -57,8 +54,7 @@ const Flash = (() => {
 				_FLASH_MESSAGE.classList.remove('bg-green-300');
 			}, 5000)
 		},
-		failure (msg) {
-			// Avoid strange interactions in case a new flash arrives while another is still active
+		failure(msg) {
 			resetTimeout();
 
 			_FLASH_MESSAGE.innerHTML = `${msg} 😢`;

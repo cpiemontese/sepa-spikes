@@ -1,0 +1,9 @@
+/Users/ale/Workspace/sepa-spikes/rust-go-cardless/target/debug/deps/socket2-98b29547be8d11c2.rmeta: /Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/lib.rs /Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/sockaddr.rs /Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/socket.rs /Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/sockref.rs /Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/sys/unix.rs
+
+/Users/ale/Workspace/sepa-spikes/rust-go-cardless/target/debug/deps/socket2-98b29547be8d11c2.d: /Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/lib.rs /Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/sockaddr.rs /Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/socket.rs /Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/sockref.rs /Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/sys/unix.rs
+
+/Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/lib.rs:
+/Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/sockaddr.rs:
+/Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/socket.rs:
+/Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/sockref.rs:
+/Users/ale/.asdf/installs/rust/1.58.1/registry/src/github.com-1ecc6299db9ec823/socket2-0.4.4/src/sys/unix.rs:

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <title>Stripe SEPA Spike</title>
+  <script src="https://js.stripe.com/v3/" type="text/javascript">
+</script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript">
+</script>
+  <link rel="stylesheet" href="index.css" type="text/css">
+</head>
+
+<body class="sm:w-1/2 lg:w-1/3 sm:mx-auto m-4">
+  <div id="flash-message" class="hidden text-lg p-4 mb-4"></div>
+
+  <form id="payment-details-form" action="" class=
+  "flex flex-col space-y-4 mb-4" name="payment-details-form">
+    <div class="flex items-center" id="customer-selection">
+      <label for="customer-id" class="mr-2">Customer</label>
+      <select id="customer-id" class=
+      "grow items-center outline-black bg-gray-200 px-2 h-10">
+        </select>
+    </div>
+
+    <div class="flex items-center" id="product-selection">
+      <label for="product-id" class="mr-2">Product</label>
+      <select id="product-id" class=
+      "grow items-center outline-black bg-gray-200 px-2 h-10">
+        </select>
+    </div><button id="payment-details-button" class=
+    "h-10 border-2 border-black active:bg-black active:text-white transition">Confirm
+    payment details</button>
+  </form>
+
+  <form id="setup-intent-form" class=
+  "hidden flex flex-col space-y-4 mb-4" action="/setup-intent"
+  method="post" name="setup-intent-form">
+    <div class="flex items-center">
+      <label for="payment-method" class="mr-2">Payment
+      Method</label> <select id="payment-method" class=
+      "grow items-center outline-black bg-gray-200 px-2 h-10" name=
+      "payment-method">
+        <option value="sepa_debit" selected>
+          Sepa Debit
+        </option>
+      </select>
+    </div><button id="payment-submit-button" class=
+    "h-10 border-2 border-black active:bg-black active:text-white transition">Go
+    to Payment</button>
+  </form>
+
+  <form id="stripe-form" class="hidden flex flex-col space-y-4"
+  action="/charge" method="post" name="stripe-form">
+    <h1 class="text-xl">IBANs for testing</h1>
+
+    <dl>
+      <dt class="font-bold"><a class="iban-number" href=
+      "#">NL39RABO0300065264</a>&eth;&Yuml;&ldquo;&lsaquo;</dt>
+
+      <dd class="text-gray-500">The PaymentIntent status
+      transitions from processing to succeeded.</dd>
+
+      <dt class="font-bold"><a class="iban-number" href=
+      "#">NL55RABO0300065267</a>&eth;&Yuml;&ldquo;&lsaquo;</dt>
+
+      <dd class="text-gray-500">The PaymentIntent status
+      transitions from processing to succeeded after three
+      minutes.</dd>
+
+      <dt class="font-bold"><a class="iban-number" href=
+      "#">NL91ABNA0417164300</a>&eth;&Yuml;&ldquo;&lsaquo;</dt>
+
+      <dd class="text-gray-500">The PaymentIntent status
+      transitions from processing to requires_payment_method.</dd>
+
+      <dt class="font-bold"><a class="iban-number" href=
+      "#">NL28RABO0300065268</a>&eth;&Yuml;&ldquo;&lsaquo;</dt>
+
+      <dd class="text-gray-500">The PaymentIntent status
+      transitions from processing to requires_payment_method after
+      three minutes.</dd>
+
+      <dt class="font-bold"><a class="iban-number" href=
+      "#">NL82RABO0300065266</a>&eth;&Yuml;&ldquo;&lsaquo;</dt>
+
+      <dd class="text-gray-500">The PaymentIntent status
+      transitions from processing to succeeded, but a dispute is
+      immediately created.</dd>
+    </dl>
+
+    <div class="flex items-center">
+      <!--
+          Using a label with a for attribute that matches the ID of the
+          Element container enables the Element to automatically gain focus
+          when the customer clicks on the label.
+        -->
+      <label for="iban-element" class="mr-2">IBAN</label>
+
+      <div id="iban-element" class=
+      "grow items-center outline-black bg-gray-200 px-2 h-10">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+    </div><!-- Display mandate acceptance text. -->
+
+    <div id="mandate-acceptance">
+      By providing your payment information and confirming this
+      payment, you authorise (A) Rocket Rides and Stripe, our
+      payment service provider and/or PPRO, its local service
+      provider, to send instructions to your bank to debit your
+      account and (B) your bank to debit your account in accordance
+      with those instructions. As part of your rights, you are
+      entitled to a refund from your bank under the terms and
+      conditions of your agreement with your bank. A refund must be
+      claimed within 8 weeks starting from the date on which your
+      account was debited. Your rights are explained in a statement
+      that you can obtain from your bank. You agree to receive
+      notifications for future debits up to 2 days before they
+      occur.
+    </div><button id="submit-button" class=
+    "h-10 border-2 border-black active:bg-black active:text-white transition">Accept
+    mandate terms</button>
+  </form>
+
+  <form id="subscription-form" class="hidden flex flex-col" action=
+  "/sub" method="post" name="subscription-form">
+    <button id="subscription-button" class=
+    "h-10 border-2 border-black active:bg-black active:text-white transition">
+    Subscribe!</button>
+  </form><script src="src/globals.js" type="text/javascript">
+</script><script src="src/iban-copy.js" type="text/javascript">
+</script><script src="src/payment-details.js" type=
+"text/javascript">
+</script><script src="src/setup-intent.js" type="text/javascript">
+</script><script src="src/stripe.js" type="text/javascript">
+</script><script src="src/subscription.js" type="text/javascript">
+</script>
+</body>
+</html>

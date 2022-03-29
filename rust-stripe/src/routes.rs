@@ -173,7 +173,6 @@ pub async fn product(product: Json<Product>, request: HttpRequest) -> HttpRespon
     let stripe_price: stripe::Price = stripe.create_a_product(&product.name, &product.price).await;
     HttpResponse::Ok().json(stripe_price)
 }
-
 #[derive(Serialize, Deserialize)]
 struct PaymentIntentCreated {
     id: String,
