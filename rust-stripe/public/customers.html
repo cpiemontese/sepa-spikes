@@ -5,34 +5,36 @@
     <title>Stripe SEPA Spike</title>
 
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 
     <link rel="stylesheet" href="index.css">
 </head>
-
 <body class="sm:w-1/2 lg:w-1/3 sm:mx-auto m-4">
     <div id="flash-message" class="hidden text-lg p-4 mb-4"></div>
 
-    <form id="customer-form" class="flex flex-col space-y-4" action="/customer" method="post">
-        <div class="flex items-center">
-            <label for="customer-name" class="mr-2">
+    <form id="customer-form"  action="/customer" method="post">
+
+  <div class="grid">
+        <div >
+            <label for="customer-name">
                 Name
             </label>
-            <input id="customer-name" class="grow items-center outline-black px-2" name="customer-name"
+            <input id="customer-name"  name="customer-name"
                 placeholder="Mario Rossi" required />
         </div>
 
-        <div class="flex items-center">
-            <label for="email" class="mr-2">
+        <div>
+            <label for="email" >
                 Email Address
             </label>
-            <input id="customer-email" class="grow items-center outline-black px-2" name="customer-email" type="email"
+            <input id="customer-email" name="customer-email" type="email"
                 placeholder="mario.rossi@example.com" required />
         </div>
 
         <button id="customer-submit-button"
-            class="h-10 border-2 border-black active:bg-black active:text-white transition">Create
+            >Create
             Customer</button>
+        </div>
     </form>
 
     <script src="src/globals.js"></script>

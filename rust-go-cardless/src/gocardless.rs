@@ -1,46 +1,16 @@
 use reqwest::{header, Client, Url};
-use serde::{Deserialize, Serialize};
 
+use crate::customers::{BankAccount, BankAccounts};
 use crate::{
     customers::{Customer, Customers},
+    mandates::{Mandate, Mandates},
     payments::{Payment, Payments},
+    refunds::{Refund, Refunds},
 };
 
 pub struct GoCardless {
     client: Client,
     base_url: Url,
-}
-#[derive(Deserialize, Serialize)]
-pub struct BankAccount {
-    iban: String,
-    account_holder_name: String,
-    currency: String,
-    links: Links,
-}
-
-#[derive(Deserialize, Serialize)]
-pub struct BankAccounts {
-    customer_bank_accounts: BankAccount,
-}
-
-#[derive(Deserialize, Serialize)]
-pub struct Links {
-    customer: String,
-}
-
-#[derive(Deserialize, Serialize)]
-struct Mandates {
-    mandates: Mandate,
-}
-
-#[derive(Deserialize, Serialize)]
-pub struct Mandate {
-    links: MandateLinks,
-}
-
-#[derive(Deserialize, Serialize)]
-struct MandateLinks {
-    customer_bank_account: String,
 }
 
 impl GoCardless {
@@ -149,6 +119,22 @@ impl GoCardless {
         let url = self.base_url.join(&format!("/customers/{id}")).unwrap();
 
         let result = self.client.get(url).send().await;
+        let data = result.ok().unwrap();
+        data.text().await
+    }
+
+    pub async fn get_all_payments(&self) -> Result<String, reqwest::Error> {
+        let url = self.base_url.join("/payments").expect("Error creating url");
+
+        let result = self.client.get(url).send().await;
+        let data = result.ok().unwrap();
+        data.text().await
+    }
+
+    pub async fn refund(&self, refund: Refund) -> Result<String, reqwest::Error> {
+        let url = self.base_url.join("/refunds").expect("Error creating url");
+        let refunds = Refunds { refunds: refund };
+        let result = self.client.post(url).json(&refunds).send().await;
         let data = result.ok().unwrap();
         data.text().await
     }

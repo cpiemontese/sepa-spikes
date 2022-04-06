@@ -34,7 +34,7 @@
     post(`${SERVER_URL}/payments`, payment)
       .then(data => {
         console.log({ mandates: data });
-        Flash.success('Customer created successfully!');
+        Flash.success('Payment created successfully!');
       })
       .catch((error) => {
         console.error({ mandates: error });

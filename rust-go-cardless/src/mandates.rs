@@ -1,6 +1,7 @@
 use actix_web::{get, post, web::Json, HttpRequest, HttpResponse};
+use serde::{Deserialize, Serialize};
 
-use crate::gocardless::{GoCardless, Mandate};
+use crate::gocardless::GoCardless;
 
 #[post("/mandates")]
 pub async fn create(mandate: Json<Mandate>, request: HttpRequest) -> HttpResponse {
@@ -20,4 +21,19 @@ pub async fn list(request: HttpRequest) -> HttpResponse {
 
     let result = go_cardless.get_all_mandate().await.unwrap();
     HttpResponse::Ok().body(result)
+}
+
+#[derive(Deserialize, Serialize)]
+pub struct Mandates {
+    pub mandates: Mandate,
+}
+
+#[derive(Deserialize, Serialize)]
+pub struct Mandate {
+    links: MandateLinks,
+}
+
+#[derive(Deserialize, Serialize)]
+struct MandateLinks {
+    customer_bank_account: String,
 }

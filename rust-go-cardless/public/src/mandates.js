@@ -30,7 +30,7 @@
     post(`${SERVER_URL}/mandates`, mandates)
       .then(data => {
         console.log({ mandates: data });
-        Flash.success('Customer created successfully!');
+        Flash.success('Mandate accept');
       })
       .catch((error) => {
         console.error({ mandates: error });

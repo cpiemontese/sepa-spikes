@@ -5,7 +5,7 @@ use actix_web::{
 };
 use serde::{Deserialize, Serialize};
 
-use crate::gocardless::{BankAccount, GoCardless};
+use crate::gocardless::GoCardless;
 
 #[get("/customers")]
 pub async fn list(request: HttpRequest) -> HttpResponse {
@@ -76,4 +76,22 @@ pub struct Customer {
 #[derive(Deserialize, Serialize)]
 pub struct Customers {
     pub customers: Customer,
+}
+
+#[derive(Deserialize, Serialize)]
+pub struct BankAccount {
+    iban: String,
+    account_holder_name: String,
+    currency: String,
+    links: Links,
+}
+
+#[derive(Deserialize, Serialize)]
+pub struct BankAccounts {
+    pub customer_bank_accounts: BankAccount,
+}
+
+#[derive(Deserialize, Serialize)]
+pub struct Links {
+    customer: String,
 }
